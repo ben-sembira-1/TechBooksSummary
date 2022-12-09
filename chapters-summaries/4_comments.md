@@ -12,7 +12,7 @@ When writing summaries:
 ## Random Points
 1. Comments May be good, may create a mess, and may be lieing and creating bugs.
 1. Using comments is a sign of **failure** expressing ourselfes using code.
-1. Using comments is bad because it is near impossible to **always** maintain them while the code changes, And even if you do manage to **always** maintain your comments, this is probably taking you way to much time.
+1. Using comments is bad because it is near impossible to **always** maintain them while the code changes, And even if you do manage to **always** maintain your comments, this is probably taking you way too much time.
 1. Inaccurate comments are far worse than no comments.
 1. Instead of commenting bad code, clean bad code.
 1. Creating a function with a name of what you want to comment, is not harder and far better then adding a comment.
@@ -27,7 +27,7 @@ When writing summaries:
 
 ## Contraversial Points
 1. I disagree with alot of the _good comments_ section.
-    1. He sais that putting the format regex function in a class can remove the comment: `// format matched kk:mm:ss EEE, MMM dd, yyyy`. I am not sure how, and in this specific case, how it is good to do so.
+    1. He says that putting the format regex function in a class can remove the comment: `// format matched kk:mm:ss EEE, MMM dd, yyyy`. I am not sure how, and in this specific case, how it is good to do so.
         1. Maybe a single function with only 2 lines: the first is this comment, and the second is the actual regex?
         1. I have to say that for this specific example, I think it is better to find a standard with a name and use its name, but in case there is not standard, This is a tricky question how to solve it.
         1. Maybe replace the strings with lots of constants? See [Apendix A](#apendix-a---format-matching-comments).
