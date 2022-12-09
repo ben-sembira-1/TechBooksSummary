@@ -1,5 +1,6 @@
-# Chapter 2 - Meaningfull Names
-**Yohai, put your summary here**
+# Chapter **X** - **Name Of Chapter**
+**Name, put your summary here**
+
 
 ## Summarizing Instructions
 When writing summaries:
