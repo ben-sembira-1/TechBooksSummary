@@ -1,7 +1,6 @@
 # Chapter **X** - **Name Of Chapter**
 **Name, put your summary here**
 
-
 ## Summarizing Instructions
 When writing summaries:
 1. For each sub-chapter in the chapter:
