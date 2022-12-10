@@ -18,12 +18,17 @@ When writing summaries:
 1. Creating a function with a name of what you want to comment, is not harder and far better then adding a comment.
 1. There are good comments. Here are examples:
     1. Copywrites comments
+    1. Warning of consiquences?
+    1. Todos
+    1. Public API docs.
     1. 
 1. 
 
 ## Rules
-1. Here you write all the rules that were written in the chapter
-1. _for rules that are not written in the chapter, write as italic text_
+1. Clean bad code instead of documenting bad code.
+    1. This can be done by using constants, functions (inline if you are using low level langueges and the amount of stack calls metters to you), and better names.
+    1. Longer names are much better then adding documentation.
+1. Clean todos regularly, and try not to put them in the first place by cleaning the code its talking about.
 
 ## Contraversial Points
 1. I disagree with alot of the _good comments_ section.
@@ -34,6 +39,8 @@ When writing summaries:
     1. Similar to the previous point, won't it be beter to just use constants? See [Apendix B](#apendix-b---put-intent-inside-a-constant).
     1. And why is this [solution](#apendix-c---remove-comment-using-a-function) not just better?
     1. And [this](#apendix-d---explain-bad-api-with-comments)?
+    1. I am not sure about the Warning of consequences comment.. I am not sure but maybe creating a linter that takes as configurations a list of bad-named modules, and their facade replacement and then the linter will prevent using the original modules, and suggest using the facade replacement instead. What do you think??
+    1. In the amplification example, whould not it be better to just create a function with an apropriate name?
 
 ## Overall Summary
 Here you are supposed to write not more then just a couple of sentences. The idea here is to give 
