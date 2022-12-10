@@ -53,14 +53,8 @@ def generateTimeMatcher():
     LOW_LETTERS_SEQUENCE = "\\d*"
     CAPITAL_LETTERS_SEQUENCE = "\\w*"
 
-    kk = LOW_LETTERS_SEQUENCE
-    mm = LOW_LETTERS_SEQUENCE
-    ss = LOW_LETTERS_SEQUENCE
-    EEE = CAPITAL_LETTERS_SEQUENCE
-    MMM = CAPITAL_LETTERS_SEQUENCE
-    dd = LOW_LETTERS_SEQUENCE
-    yy = LOW_LETTERS_SEQUENCE
-
+    kk = mm = ss = dd = yy = LOW_LETTERS_SEQUENCE
+    EEE = MMM = CAPITAL_LETTERS_SEQUENCE
     return Pattern.compile(f"{kk}:{mm}:{ss} {EEE}, {MMM} {dd}, {yyyy}")
 
 ...
