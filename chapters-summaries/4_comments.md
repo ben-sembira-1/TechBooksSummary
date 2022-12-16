@@ -22,6 +22,9 @@ When writing summaries:
     1. Todos
     1. Public API docs.
     1. 
+1. A comment should not make the reader look on other parts of the code to get the full picture.
+    1. _I think that in the case of the comment in the emtpy catch block, the correct thing to do is to remove the comment and do whatever you need to do in a different way._
+1. Sometimes the code is more readable then a comment. Commenting short readable code is meaningless.
 1. 
 
 ## Rules
@@ -41,6 +44,7 @@ When writing summaries:
     1. And [this](#apendix-d---explain-bad-api-with-comments)?
     1. I am not sure about the Warning of consequences comment.. I am not sure but maybe creating a linter that takes as configurations a list of bad-named modules, and their facade replacement and then the linter will prevent using the original modules, and suggest using the facade replacement instead. What do you think??
     1. In the amplification example, whould not it be better to just create a function with an apropriate name?
+1. In listing 4-4 he argued that the first comment is OK. But is it? See [Apendix D]()
 
 ## Overall Summary
 Here you are supposed to write not more then just a couple of sentences. The idea here is to give 
@@ -201,4 +205,27 @@ public void testCompareTo() throws Exception
     assertTrue(ab.compareTo(aa) == BIGGER_THEN_ARGUMENT);
     assertTrue(bb.compareTo(ba) == BIGGER_THEN_ARGUMENT);
 }
+```
+
+### Apendix E - redundent comment in empty catch block
+From book:
+```cpp
+try
+{
+    doSending();
+}
+    catch(SocketException e)
+{
+    // normal. someone stopped the request.
+}
+```
+My suggestion:
+```cpp
+using RequestStoppedException = SocketException
+try
+{
+    doSending();
+}
+    catch(RequestStoppedException e)
+{}
 ```
