@@ -1,13 +1,4 @@
 # Chapter 4 - Comments
-**Ben, put your summary here**
-
-## Summarizing Instructions
-When writing summaries:
-1. For each sub-chapter in the chapter:
-    1. **While Reading**: Add lots of points under the [Random Point](#random-points) section.
-    1. **If you do not fully agree with something**: Add a point in the [Contraversial Points](#contraversial-points) section.
-    1. **After finishing the sub-chapter**: Add rules to the [Rules](#rules) section
-1. After finishing the chapter, write an [Overall Summary](#overall-summary) with all the main ideas.
 
 ## Random Points
 1. Comments May be good, may create a mess, and may be lieing and creating bugs.
@@ -22,13 +13,21 @@ When writing summaries:
     1. Todos
     1. Public API docs.
     1. 
-1. 
+1. A comment should not make the reader look on other parts of the code to get the full picture.
+    1. _I think that in the case of the comment in the emtpy catch block, the correct thing to do is to remove the comment and do whatever you need to do in a different way._
+1. Sometimes the code is more readable then a comment. Commenting short readable code is meaningless.
+1. Sometimes, making code efficient comes in the cost of readablity. This tradeoff should be taken siriously when writing code. Every time a complex piece of code is written, you should ask yourself - Does this efficiency serve someone? And even if so, is it significant enough to be worth the drawbacks that come with complex code?
 
 ## Rules
 1. Clean bad code instead of documenting bad code.
     1. This can be done by using constants, functions (inline if you are using low level langueges and the amount of stack calls metters to you), and better names.
     1. Longer names are much better then adding documentation.
 1. Clean todos regularly, and try not to put them in the first place by cleaning the code its talking about.
+1. Do not make comments that can make the reader look on other parts of the code to understand it.
+1. Do not use a comment where a function or a variable can be used.
+1. Do not comment out code. VCSs are here for the duty of remembering code.
+1. Do not put code in comments. _For usage instructions, use a README or other markdown file._
+1. Comments should not need furthor explenation, they should be clear, and have **obviuos** connection to the code they discribe.
 
 ## Contraversial Points
 1. I disagree with alot of the _good comments_ section.
@@ -41,6 +40,9 @@ When writing summaries:
     1. And [this](#apendix-d---explain-bad-api-with-comments)?
     1. I am not sure about the Warning of consequences comment.. I am not sure but maybe creating a linter that takes as configurations a list of bad-named modules, and their facade replacement and then the linter will prevent using the original modules, and suggest using the facade replacement instead. What do you think??
     1. In the amplification example, whould not it be better to just create a function with an apropriate name?
+1. In listing 4-4 he argues that the first comment is OK. But is it? See [Apendix E](#apendix-e---redundent-comment-in-empty-catch-block)
+1. In page 70 he argues that saying what the default value of a parameter in a setter is bad because there is another place in the code that does it. But how can a programmer know that when using the library? Of course that if this information can be put inside a constructor, or in a better place it is preferable, but if there is no constructor, where should this information go?
+1. 
 
 ## Overall Summary
 Here you are supposed to write not more then just a couple of sentences. The idea here is to give 
@@ -201,4 +203,27 @@ public void testCompareTo() throws Exception
     assertTrue(ab.compareTo(aa) == BIGGER_THEN_ARGUMENT);
     assertTrue(bb.compareTo(ba) == BIGGER_THEN_ARGUMENT);
 }
+```
+
+### Apendix E - redundent comment in empty catch block
+From book:
+```cpp
+try
+{
+    doSending();
+}
+    catch(SocketException e)
+{
+    // normal. someone stopped the request.
+}
+```
+My suggestion:
+```cpp
+using RequestStoppedException = SocketException
+try
+{
+    doSending();
+}
+    catch(RequestStoppedException e)
+{}
 ```
