@@ -1,2 +1,2 @@
 # CleanCodeSummary
-Summary and disscussions about the book Clean Code
+Summary and discussions about the book Clean Code
