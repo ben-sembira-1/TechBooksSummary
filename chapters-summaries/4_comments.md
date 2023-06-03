@@ -1,4 +1,6 @@
 # Chapter 4 - Comments
+**Ben, put your summary here**
+
 
 ## Random Points
 1. Comments May be good, may create a mess, and may be lieing and creating bugs.
@@ -29,7 +31,7 @@
 1. Do not put code in comments. _For usage instructions, use a README or other markdown file._
 1. Comments should not need furthor explenation, they should be clear, and have **obviuos** connection to the code they discribe.
 
-## Contraversial Points
+## Controversial Points
 1. I disagree with alot of the _good comments_ section.
     1. He says that putting the format regex function in a class can remove the comment: `// format matched kk:mm:ss EEE, MMM dd, yyyy`. I am not sure how, and in this specific case, how it is good to do so.
         1. Maybe a single function with only 2 lines: the first is this comment, and the second is the actual regex?
