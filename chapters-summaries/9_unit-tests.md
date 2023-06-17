@@ -1,27 +1,26 @@
 # Chapter 9 - Unit Tests
-**Name, put your summary here**
-
-## Summarizing Instructions
-When writing summaries:
-1. For each sub-chapter in the chapter:
-    1. **While Reading**: Add lots of points under the [Random Points](#random-points) section.
-    1. **If you do not fully agree with something**: Add a point in the [Contraversial Points](#contraversial-points) section.
-    1. **After finishing the sub-chapter**: Add rules to the [Rules](#rules) section
-1. After finishing the chapter, write an [Overall Summary](#overall-summary) with all the main ideas.
 
 ## Random Points
-1. About clean tests, I totaly agree, about TDD, I need to think more about it.
-1. He gave a
+1. Clean tests are as important if not more then production code. They are the real thing that makes code flexible and liable.
+1. About TDD, is it always a good idea? Maybe.. But sometimes when a developer is not experienced enough it can be too hard to predict how the API will look like. In general, I agree - A lot because it makes developers create testable code, and because it can lower the amount of irelavnt code that developers add just for fun.
+1. It is a good idea to seperate tests by concepts.
+1. Minimize assertions per test.
+1. Tests can lack where production code can't - In efficency (As long as the tests stay fast to run).
 
 ## Rules
-1. Here you write all the rules that were written in the chapter
-1. _for rules that are not written in the chapter, write as italic text_
+1. F.I.R.S.T
+    1. Fast
+    1. Independent (Nice reason - Helps diagnosis When something failes)
+    1. Repeatable
+    1. Self-Validating
+    1. Timely (Contraversial?)
 
 ## Contraversial Points
-1. He gave an example of tests that does multiple assertions. I do not like the shortcuts he did.
+1. He gave an example of tests that does multiple assertions. I do not like the shortcuts he did. [alternative](#appendix-a---short-assertions)
 
 ## Overall Summary
-Here you are supposed to write not more then just a couple of sentences. The idea here is to give 
+Tests are important. Very important. And we should treat them as production code.
+The F.I.R.S.T acronym is a pretty good summary to remember.
 
 ## Appendix
 
