@@ -1,13 +1,5 @@
 # Chapter 10 - Classes
 
-## Summarizing Instructions
-When writing summaries:
-1. For each sub-chapter in the chapter:
-    1. **While Reading**: Add lots of points under the [Random Points](#random-points) section.
-    1. **If you do not fully agree with something**: Add a point in the [Controversial Points](#controversial-points) section.
-    1. **After finishing the sub-chapter**: Add rules to the [Rules](#rules) section
-1. After finishing the chapter, write an [Overall Summary](#overall-summary) with all the main ideas.
-
 ## New Terms
 1. _Cohesion_ - The more instance variables a function uses, the more cohesive it is. A class that all its methods use all its instance variables is said to be maximally cohesive.
 
