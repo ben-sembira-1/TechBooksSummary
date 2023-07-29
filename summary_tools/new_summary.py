@@ -1,6 +1,6 @@
 from pathlib import Path
 from summary_tools.books.books_search import get_all_existing_book_paths
-from summary_tools.chapter_summary_metadata import ChapterSummaryMetadata
+from summary_tools.chapter_summary.chapter_summary_metadata import ChapterSummaryMetadata
 
 def get_chapter_summary_metadata() -> ChapterSummaryMetadata:
     # Todo
