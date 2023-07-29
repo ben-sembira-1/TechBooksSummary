@@ -12,8 +12,10 @@ def empty_directory() -> Path:
 
 def test_list_directory_books(empty_directory: Path):
     books_directory = empty_directory
+
     initial_books = ("AUTHOR_bookName", "AUTHORB_SomthingElseEdition2-refactored")
     not_book_names = ("something_else", ".private_things", ".WEIRD_PRIVATE")
+
     for subdir in itertools.chain(initial_books, not_book_names):
         (books_directory / subdir).mkdir()
 
