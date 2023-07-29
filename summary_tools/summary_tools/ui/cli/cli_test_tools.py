@@ -31,7 +31,7 @@ class CLIMock(ui.UI):
     messages_shown: List[str] = field(default_factory=list, init=False)
 
     def choose_from(self, options_set_name: str, options: List[ui.Option[T]]) -> T:
-        choice = self.options_choices.pop()
+        choice = self.options_choices.pop(0)
         return options[choice].value
 
     def show_message(self, message: str):
@@ -40,9 +40,9 @@ class CLIMock(ui.UI):
     def get_integer(self, instructions: str | None) -> int:
         if instructions is not None:
             self.messages_shown.append(instructions)
-        return self.integer_inputs_choices.pop()
+        return self.integer_inputs_choices.pop(0)
 
     def get_string(self, instructions: str | None) -> str:
         if instructions is not None:
             self.messages_shown.append(instructions)
-        return self.string_input_choices.pop()
+        return self.string_input_choices.pop(0)
