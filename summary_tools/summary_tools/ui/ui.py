@@ -19,3 +19,11 @@ class UI(abc.ABC):
     @abc.abstractmethod
     def show_message(self, message: str):
         ...
+
+    @abc.abstractmethod
+    def get_integer(self, instructions: str | None) -> int:
+        ...
+
+    @abc.abstractmethod
+    def get_string(self, instructions: str | None) -> str:
+        ...

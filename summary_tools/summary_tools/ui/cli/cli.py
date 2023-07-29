@@ -1,6 +1,6 @@
 
 from dataclasses import dataclass
-from typing import Iterator, List, Protocol, Generic, TypeVar
+from typing import List, Protocol, TypeVar
 
 from summary_tools.ui import ui
 
@@ -41,20 +41,45 @@ class CLI(ui.UI):
         assert len(
             options) > 0, "At least one option to choose from should be given."
 
+        self._draw_buffer()
         self.output.write(
             f"From these {options_set_name}, choose the number that represents your choice:\n\n")
         for index, option in enumerate(options):
             self.output.write(f"({index}) - {option.name}\n")
-        self.output.write("\n>>> ")
-        chosen_option = self.input.readline()
-        self.output.write("\n")
+        chosen_option = self.get_integer()
 
-        try:
-            return choose_from_options_no_negative_index(options, int(chosen_option)).value
-        except ValueError as e:
-            raise CLIError(
-                f"Expected a number, got: \"{chosen_option}\" instead"
-            ) from e
+        return choose_from_options_no_negative_index(options, int(chosen_option)).value
 
     def show_message(self, message: str):
+        self._draw_buffer()
         self.output.write(message + "\n")
+
+    def get_integer(self, instructions: str | None = None) -> int:
+        input_got = self._detailed_read_input(instructions, "number")
+        try:
+            number = int(input_got)
+        except ValueError as e:
+            raise CLIError(
+                f"Expected an integer, got: \"{input_got}\" instead"
+            ) from e
+
+        return number
+
+    def get_string(self, instructions: str | None = None) -> str:
+        return self._detailed_read_input(instructions, "string")
+
+    def _detailed_read_input(self, instructions: str | None, hint: str) -> str:
+        self._draw_buffer()
+        if instructions is not None:
+            self.output.write(f"{instructions}\n")
+
+        return self._read_input(hint)
+
+    def _read_input(self, hint: str) -> str:
+        self.output.write(f"\n({hint}) >>> ")
+        chosen_option = self.input.readline()
+        self.output.write("\n")
+        return chosen_option
+
+    def _draw_buffer(self):
+        self.output.write("---------------------------------------")

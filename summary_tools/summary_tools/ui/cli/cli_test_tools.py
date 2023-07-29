@@ -26,7 +26,7 @@ T = TypeVar("T")
 @dataclass
 class CLIMock(ui.UI):
     options_choices: List[int]
-    number_inputs_choices: List[int]
+    integer_inputs_choices: List[int]
     string_input_choices: List[str]
     messages_shown: List[str] = field(default_factory=list, init=False)
 
@@ -36,3 +36,13 @@ class CLIMock(ui.UI):
 
     def show_message(self, message: str):
         self.messages_shown.append(message)
+
+    def get_integer(self, instructions: str | None) -> int:
+        if instructions is not None:
+            self.messages_shown.append(instructions)
+        return self.integer_inputs_choices.pop()
+
+    def get_string(self, instructions: str | None) -> str:
+        if instructions is not None:
+            self.messages_shown.append(instructions)
+        return self.string_input_choices.pop()
