@@ -16,7 +16,7 @@ def choose_from_options_no_negative_index(options: List[OptionType], index: int)
 
 
 class Input(Protocol):
-    def read(self) -> str:
+    def readline(self) -> str:
         ...
 
 
@@ -46,7 +46,7 @@ class CLI(ui.UI):
         for index, option in enumerate(options):
             self.output.write(f"({index}) - {option.name}\n")
         self.output.write("\n>>> ")
-        chosen_option = self.input.read()
+        chosen_option = self.input.readline()
         self.output.write("\n")
 
         try:
@@ -55,3 +55,6 @@ class CLI(ui.UI):
             raise CLIError(
                 f"Expected a number, got: \"{chosen_option}\" instead"
             ) from e
+
+    def show_message(self, message: str):
+        self.output.write(message + "\n")

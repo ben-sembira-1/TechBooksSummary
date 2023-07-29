@@ -5,7 +5,7 @@ class InputMock:
     def __init__(self, responses: Iterable[str]):
         self.responses_iterator = iter(responses)
 
-    def read(self) -> str:
+    def readline(self) -> str:
         return next(self.responses_iterator)
 
 

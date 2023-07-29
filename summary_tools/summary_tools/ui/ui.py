@@ -15,3 +15,7 @@ class UI(abc.ABC):
     @abc.abstractmethod
     def choose_from(self, options_set_name: str, options: List[Option[T]]) -> T:
         ...
+
+    @abc.abstractmethod
+    def show_message(self, message: str):
+        ...
