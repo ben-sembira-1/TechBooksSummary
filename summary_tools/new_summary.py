@@ -1,52 +1,10 @@
-from typing import Iterator
-from dataclasses import dataclass
 from pathlib import Path
-
-import re
-
-@dataclass
-class ChapterSummaryMetadata:
-    writer: str
-    chapter_number: int
-    chapter_name: str
-
-    def formatted_representation_no_spaces(self):
-        return "" # Todo
+from summary_tools.books.books_search import get_all_existing_book_paths
+from summary_tools.chapter_summary_metadata import ChapterSummaryMetadata
 
 def get_chapter_summary_metadata() -> ChapterSummaryMetadata:
     # Todo
     return ChapterSummaryMetadata("writer name", 0, "chapter name")
-
-def subdirectories(path: Path) -> Iterator[Path]:
-    for child in path.iterdir():
-        if child.is_dir():
-            yield child
-
-def book_directory_name_regex() -> re.Pattern:
-    START = "^"
-    CAPS_ONLY = "[A-Z]+"
-    NOT_NOTHING_NO_UNDERSCORES = "[^_]+"
-    END = "$"
-
-    book_regular_expression = \
-        f"{START}"\
-        f"{CAPS_ONLY}"\
-        f"_"\
-        f"{NOT_NOTHING_NO_UNDERSCORES}"\
-        f"{END}"
-
-    return re.compile(book_regular_expression)
-
-def directory_is_a_book(directory_name: Path) -> bool:
-    NO_MATCH = None
-
-    book_regex = book_directory_name_regex()
-    return book_regex.fullmatch(directory_name.name) is not NO_MATCH
-
-def get_all_existing_book_paths(path: Path) -> Iterator[Path]:
-    for directory in subdirectories(path):
-        if directory_is_a_book(directory):
-            yield directory
 
 def get_book_name() -> str:
     all_book_names = get_all_existing_book_paths(Path("."))

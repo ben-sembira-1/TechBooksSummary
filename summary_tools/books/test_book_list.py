@@ -3,7 +3,7 @@ import tempfile
 import itertools
 import pytest
 
-from ..new_summary import get_all_existing_book_paths
+from .books_search import get_all_existing_book_paths
 
 @pytest.fixture
 def empty_directory() -> Path:

@@ -1,6 +1,6 @@
 import pytest
 
-from ..new_summary import book_directory_name_regex
+from .books_search import book_directory_name_regex
 
 @pytest.mark.parametrize("directory_name",[
     "A_a",
