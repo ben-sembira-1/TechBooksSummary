@@ -25,14 +25,14 @@ def subdirectories(path: Path) -> Iterator[Path]:
 def book_directory_name_regex() -> re.Pattern:
     START = "^"
     CAPS_ONLY = "[A-Z]+"
-    NOT_NOTHING = ".+"
+    NOT_NOTHING_NO_UNDERSCORES = "[^_]+"
     END = "$"
 
     book_regular_expression = \
         f"{START}"\
         f"{CAPS_ONLY}"\
         f"_"\
-        f"{NOT_NOTHING}"\
+        f"{NOT_NOTHING_NO_UNDERSCORES}"\
         f"{END}"
 
     return re.compile(book_regular_expression)
