@@ -13,7 +13,6 @@ def add_books_to_directory(path: Path, books_names: List[str]):
         (path / book_name).mkdir()
 
 
-@pytest.mark.skip("First finish chapters tests")
 def test_generate_new_summary(empty_directory: Path, summary_template_path: Path):
     CHOOSE_FIRST_BOOK = 0
     CHAPTER_NUMBER = 0
@@ -32,6 +31,6 @@ def test_generate_new_summary(empty_directory: Path, summary_template_path: Path
     generate_new_summary(cli_mock, directory_with_books, summary_template_path)
 
     expected_summary_path = (directory_with_books / FIRST_BOOK /
-                             f"{CHAPTER_NUMBER}_{pascal_case(CHAPTER_NAME)}_{kebab_case(SUMMARY_WRITER)}")
+                             f"{CHAPTER_NUMBER}_{pascal_case(CHAPTER_NAME)}__{kebab_case(SUMMARY_WRITER)}")
     assert expected_summary_path.exists()
     assert expected_summary_path.is_file()
