@@ -1,4 +1,7 @@
-from typing import Iterable
+from dataclasses import dataclass, field
+from typing import Iterable, List, TypeVar
+
+from summary_tools.ui import ui
 
 
 class InputMock:
@@ -15,3 +18,21 @@ class OutputMock:
 
     def write(self, data: str):
         self.output += data
+
+
+T = TypeVar("T")
+
+
+@dataclass
+class CLIMock(ui.UI):
+    options_choices: List[int]
+    number_inputs_choices: List[int]
+    string_input_choices: List[str]
+    messages_shown: List[str] = field(default_factory=list, init=False)
+
+    def choose_from(self, options_set_name: str, options: List[ui.Option[T]]) -> T:
+        choice = self.options_choices.pop()
+        return options[choice].value
+
+    def show_message(self, message: str):
+        self.messages_shown.append(message)
