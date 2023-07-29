@@ -5,7 +5,7 @@ from summary_tools.filesystem_tools.fs_test_tools import empty_directory
 from .books_search import get_all_existing_book_paths
 
 
-def test_list_directory_books(empty_directory: Path):
+def test_get_all_existing_book_paths(empty_directory: Path):
     books_directory = empty_directory
 
     initial_books = ("AUTHORA_bookName", "AUTHORB_SomethingElseEdition2-refactored")
