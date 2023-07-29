@@ -8,7 +8,7 @@ from .books_search import get_all_existing_book_paths
 def test_list_directory_books(empty_directory: Path):
     books_directory = empty_directory
 
-    initial_books = ("AUTHORA_bookName", "AUTHORB_SomthingElseEdition2-refactored")
+    initial_books = ("AUTHORA_bookName", "AUTHORB_SomethingElseEdition2-refactored")
     not_book_names = ("something_else", ".private_things", ".WEIRD_PRIVATE")
 
     for subdir in itertools.chain(initial_books, not_book_names):
