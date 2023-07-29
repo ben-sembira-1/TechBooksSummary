@@ -13,3 +13,5 @@ def get_chapter_summary_metadata(ui_provider: ui.UI) -> ChapterSummaryMetadata:
 
 def create_new_chapter_summary(ui_provider: ui.UI, book_path: Path, template_path: Path):
     summary_metadata = get_chapter_summary_metadata(ui_provider)
+    new_summary_path = (book_path / summary_metadata.repr_no_spaces())
+    new_summary_path.write_bytes(template_path.read_bytes())
