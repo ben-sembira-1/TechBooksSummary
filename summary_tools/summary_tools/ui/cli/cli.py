@@ -45,7 +45,7 @@ class CLI(ui.UI):
             f"From these {options_set_name}, choose the number that represents your choice:\n\n")
         for index, option in enumerate(options):
             self.output.write(f"({index}) - {option.name}\n")
-        self.output.write("\n>>>")
+        self.output.write("\n>>> ")
         chosen_option = self.input.read()
         self.output.write("\n")
 
