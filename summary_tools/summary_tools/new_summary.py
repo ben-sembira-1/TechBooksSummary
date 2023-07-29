@@ -1,5 +1,7 @@
 from pathlib import Path
 from sys import stdin, stdout
+import sys
+from typing import List
 from summary_tools.books.books_search import get_all_existing_book_paths
 from summary_tools.chapter_summary.chapter_summary_metadata import ChapterSummaryMetadata
 from summary_tools.ui.cli.cli import CLI
@@ -20,13 +22,14 @@ def create_new_chapter_summary(metadata: ChapterSummaryMetadata) -> None:
     pass
 
 
-def main():
+def main(args: List[str]):
+    _, books_directory = args
     cli = CLI(stdin, stdout)
-    book_name = choose_book_from_path(cli, Path("."))
+    book_name = choose_book_from_path(cli, Path(books_directory))
     cli.output.write(f"{book_name=}")
     # chapter_summary_metadata = get_chapter_summary_metadata()
     # create_new_chapter_summary(chapter_summary_metadata)
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)
