@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from summary_tools.string_tools.string_tools import kebabcase, pascalcase
+from summary_tools.string_tools.string_tools import kebab_case, pascal_case
 
 @dataclass
 class ChapterSummaryMetadata:
@@ -10,4 +10,4 @@ class ChapterSummaryMetadata:
 
     def repr_no_spaces(self):
         
-        return f"{self.chapter_number}_{pascalcase(self.chapter_name)}__{kebabcase(self.writer)}"
+        return f"{self.chapter_number}_{pascal_case(self.chapter_name)}__{kebab_case(self.writer)}"

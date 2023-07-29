@@ -12,10 +12,10 @@ def multi_replace(string: str, old: tuple[str], new: str) -> list[str]:
         string
     )
 
-def pascalcase(string: str) -> str:
+def pascal_case(string: str) -> str:
     only_spaces = multi_replace(string, old=STANDARD_SEPARATORS, new=" ")
     return "".join(only_spaces.title().split(" "))
 
-def kebabcase(string: str) -> str:
+def kebab_case(string: str) -> str:
     only_spaces = multi_replace(string, old=STANDARD_SEPARATORS, new=" ")
     return "-".join(only_spaces.lower().split(" "))
