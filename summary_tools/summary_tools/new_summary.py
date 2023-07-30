@@ -21,10 +21,21 @@ def generate_new_summary(ui_provider: ui.UI, books_directory: Path, summary_temp
 
 
 def main(args: List[str]):
+    DEBUG_FLAG = "--debug"
+    if debug_mode := (DEBUG_FLAG in args):
+        args.remove(DEBUG_FLAG)
+    
     _, books_directory, summary_template_path = args
+    
     cli = CLI(stdin, stdout)
-    generate_new_summary(cli, Path(books_directory),
-                         Path(summary_template_path))
+    try:
+        generate_new_summary(cli, Path(books_directory),
+                             Path(summary_template_path))
+    except Exception as e:
+        if debug_mode:
+            raise
+        else:
+            cli.show_message(f"Error: {str(e)}")
 
 
 if __name__ == "__main__":
