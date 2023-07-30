@@ -42,17 +42,17 @@ class CLI(ui.UI):
             options) > 0, "At least one option to choose from should be given."
 
         self._draw_buffer()
-        self.output.write(
-            f"From these {options_set_name}, choose the number that represents your choice:\n\n")
+        self._print(
+            f"From these {options_set_name}, choose the number that represents your choice:", end="\n\n")
         for index, option in enumerate(options):
-            self.output.write(f"({index}) - {option.name}\n")
+            self._print(f"({index}) - {option.name}")
         chosen_option = self.get_integer()
 
         return choose_from_options_no_negative_index(options, int(chosen_option)).value
 
     def show_message(self, message: str):
         self._draw_buffer()
-        self.output.write(message + "\n")
+        self._print(message)
 
     def get_integer(self, instructions: str | None = None) -> int:
         input_got = self._detailed_read_input(instructions, "number")
@@ -71,15 +71,18 @@ class CLI(ui.UI):
     def _detailed_read_input(self, instructions: str | None, hint: str) -> str:
         self._draw_buffer()
         if instructions is not None:
-            self.output.write(f"{instructions}\n")
+            self._print(f"{instructions}")
 
         return self._read_input(hint)
 
     def _read_input(self, hint: str) -> str:
-        self.output.write(f"\n({hint}) >>> ")
+        self._print(f"\n({hint}) >>> ", end="")
         chosen_option = self.input.readline()
-        self.output.write("\n")
+        self._print()
         return chosen_option
 
     def _draw_buffer(self):
-        self.output.write("---------------------------------------\n")
+        self._print("---------------------------------------")
+    
+    def _print(self, text: str = "", end: str = "\n") -> None:
+        self.output.write(f"{text}{end}")
