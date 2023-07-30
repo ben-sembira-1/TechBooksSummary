@@ -6,14 +6,14 @@ import re
 from summary_tools.filesystem_tools.directory_tools import subdirectories
 
 def book_directory_name_regex() -> re.Pattern:
-    START = "^"
-    CAPS_ONLY = "[A-Z]+"
-    NOT_NOTHING_NO_UNDERSCORES = "[^_]+"
-    END = "$"
+    START = r"^"
+    KEBAB_CAPS_ONLY = r"[A-Z\-]+"
+    NOT_NOTHING_NO_UNDERSCORES = r"[^_]+"
+    END = r"$"
 
     book_regular_expression = \
         f"{START}"\
-        f"{CAPS_ONLY}"\
+        f"{KEBAB_CAPS_ONLY}"\
         f"_"\
         f"{NOT_NOTHING_NO_UNDERSCORES}"\
         f"{END}"

@@ -8,6 +8,7 @@ from .books_search import book_directory_name_regex
     "ABC_aAbB",
     "ABC_AaAa",
     "A_aA1Aa",
+    "A-B_bookName",
 ])
 def test_book_directory_name_regex_valid_names(directory_name):
     assert book_directory_name_regex().fullmatch(directory_name) is not None
