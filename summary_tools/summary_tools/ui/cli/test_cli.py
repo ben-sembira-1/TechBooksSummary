@@ -54,7 +54,7 @@ def test_cli_get_number_valid_number(number):
     assert cli.get_integer(INSTRUCTIONS) == number
 
 
-@pytest.mark.parametrize("number", ["abc", "", 0.3, 1e3])
+@pytest.mark.parametrize("number", ["abc", 0.3, 1e3])
 def test_cli_get_integer_invalid_integer(number):
     INSTRUCTIONS = "instructions"
 
@@ -62,5 +62,14 @@ def test_cli_get_integer_invalid_integer(number):
     output = OutputMock()
     cli = CLI(input, output)
 
-    with pytest.raises(CLIError, match=re.compile("Expected an integer")):
-        cli.get_integer(INSTRUCTIONS) == number
+    with pytest.raises(CLIError, match=re.compile(r"Expected an integer")):
+        cli.get_integer(INSTRUCTIONS)
+
+def test_cli_empty_input():
+    INSTRUCTIONS = "instructions"
+    input = InputMock(["", ""])
+    output = OutputMock()
+    cli = CLI(input, output)
+
+    with pytest.raises(CLIError, match=re.compile(r"[Ee]mpty .* not alowed")):
+        cli.get_integer(INSTRUCTIONS)

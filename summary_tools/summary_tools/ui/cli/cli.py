@@ -55,7 +55,7 @@ class CLI(ui.UI):
         self._print(message)
 
     def get_integer(self, instructions: str | None = None) -> int:
-        input_got = self._detailed_read_input(instructions, "number")
+        input_got = self._detailed_read_input(instructions, hint="number", allow_empty=False)
         try:
             number = int(input_got)
         except ValueError as e:
@@ -65,21 +65,25 @@ class CLI(ui.UI):
 
         return number
 
-    def get_string(self, instructions: str | None = None) -> str:
-        return self._detailed_read_input(instructions, "string")
+    def get_string(self, instructions: str | None = None, *, allow_empty: bool = False) -> str:
+        return self._detailed_read_input(instructions, hint="string", allow_empty=allow_empty)
 
-    def _detailed_read_input(self, instructions: str | None, hint: str) -> str:
+    def _detailed_read_input(self, instructions: str | None, *, hint: str, allow_empty: bool) -> str:
         self._draw_buffer()
         if instructions is not None:
             self._print(f"{instructions}")
 
-        return self._read_input(hint)
+        return self._read_input(hint, allow_empty=allow_empty)
 
-    def _read_input(self, hint: str) -> str:
+    def _read_input(self, hint: str, *, allow_empty: bool) -> str:
         self._print(f"\n({hint}) >>> ", end="")
-        chosen_option = self.input.readline().strip()
+        input_got = self.input.readline().strip()
         self._print()
-        return chosen_option
+
+        if not allow_empty and not input_got.strip():
+            raise CLIError("Empty input not alowed.")
+
+        return input_got
 
     def _draw_buffer(self):
         self._print("---------------------------------------")
