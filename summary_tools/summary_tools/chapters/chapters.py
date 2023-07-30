@@ -10,8 +10,8 @@ def get_chapter_summary_metadata(ui_provider: ui.UI) -> ChapterSummaryMetadata:
     chapter_name = ui_provider.get_string("What is the name of the chapter?")
     return ChapterSummaryMetadata(writer_name, chapter_number, chapter_name)
 
-
 def create_new_chapter_summary(ui_provider: ui.UI, book_path: Path, template_path: Path):
     summary_metadata = get_chapter_summary_metadata(ui_provider)
     new_summary_path = (book_path / summary_metadata.repr_no_spaces())
     new_summary_path.write_bytes(template_path.read_bytes())
+    ui_provider.show_message(f"Your new summary is waiting for you in: \"{Path(new_summary_path.absolute()).as_uri()}\"")
