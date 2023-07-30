@@ -82,4 +82,4 @@ class CLI(ui.UI):
         return chosen_option
 
     def _draw_buffer(self):
-        self.output.write("---------------------------------------")
+        self.output.write("---------------------------------------\n")
