@@ -30,7 +30,7 @@ def main(books_directory: str, summary_template_path: str, debug: bool = False):
         if debug:
             raise
         else:
-            cli.show_message(f"Error: {str(e)}")
+            cli.show_message(f"Error: {str(e)} (use --debug for more details)")
 
 
 if __name__ == "__main__":
