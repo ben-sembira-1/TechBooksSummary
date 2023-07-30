@@ -2,6 +2,7 @@ from pathlib import Path
 from sys import stdin, stdout
 import sys
 from typing import List
+import fire
 from summary_tools.books.books_search import get_all_existing_book_paths
 from summary_tools.chapters import chapters
 from summary_tools.ui import ui
@@ -20,23 +21,17 @@ def generate_new_summary(ui_provider: ui.UI, books_directory: Path, summary_temp
         ui_provider, book_path, summary_template_path)
 
 
-def main(args: List[str]):
-    DEBUG_FLAG = "--debug"
-    if debug_mode := (DEBUG_FLAG in args):
-        args.remove(DEBUG_FLAG)
-    
-    _, books_directory, summary_template_path = args
-    
+def main(books_directory: str, summary_template_path: str, debug: bool = False):
     cli = CLI(stdin, stdout)
     try:
         generate_new_summary(cli, Path(books_directory),
                              Path(summary_template_path))
     except Exception as e:
-        if debug_mode:
+        if debug:
             raise
         else:
             cli.show_message(f"Error: {str(e)}")
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    fire.Fire(main)
