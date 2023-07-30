@@ -9,7 +9,7 @@ class InputMock:
         self.responses_iterator = iter(responses)
 
     def readline(self) -> str:
-        return next(self.responses_iterator)
+        return f"{next(self.responses_iterator)}\n"
 
 
 class OutputMock:

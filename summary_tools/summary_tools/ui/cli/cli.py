@@ -77,7 +77,7 @@ class CLI(ui.UI):
 
     def _read_input(self, hint: str) -> str:
         self._print(f"\n({hint}) >>> ", end="")
-        chosen_option = self.input.readline()
+        chosen_option = self.input.readline().strip()
         self._print()
         return chosen_option
 
