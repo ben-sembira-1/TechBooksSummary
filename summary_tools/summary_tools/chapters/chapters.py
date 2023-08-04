@@ -23,13 +23,13 @@ def generate_summary_name(ui_provider: ui.UI) -> str:
 def write_template_to_new_summary_file(ui_provider: ui.UI, new_summary_path: Path, template_path: Path):
     new_summary_path.write_bytes(template_path.read_bytes())
     ui_provider.show_message(
-        f"Your new summary is waiting for you in: \"{new_summary_path.as_uri()}\"")
+        f"Your new summary is waiting for you in: \"{new_summary_path.as_posix()}\"")
 
 
 def create_new_chapter_summary(ui_provider: ui.UI, book_path: Path, template_path: Path):
     new_summary_path = book_path / generate_summary_name(ui_provider)
     if new_summary_path.exists():
         raise ChapterError(
-            f"The file {new_summary_path.as_uri()} already exists.")
+            f"The file {new_summary_path.as_posix()} already exists.")
     write_template_to_new_summary_file(
         ui_provider, new_summary_path, template_path)
