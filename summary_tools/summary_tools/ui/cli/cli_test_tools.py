@@ -42,7 +42,7 @@ class CLIMock(ui.UI):
             self.messages_shown.append(instructions)
         return self.integer_inputs_choices.pop(0)
 
-    def get_string(self, instructions: str | None) -> str:
+    def get_string(self, instructions: str | None, *, allow_empty: bool = False) -> str:
         if instructions is not None:
             self.messages_shown.append(instructions)
         return self.string_input_choices.pop(0)

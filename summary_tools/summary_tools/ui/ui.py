@@ -25,5 +25,5 @@ class UI(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def get_string(self, instructions: str | None, allow_empty: bool = False) -> str:
+    def get_string(self, instructions: str | None, *, allow_empty: bool = False) -> str:
         ...
