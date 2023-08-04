@@ -2,7 +2,8 @@ from pathlib import Path
 from sys import stdin, stdout
 import sys
 from typing import List
-import fire
+# TODO: fire does not have a py.typed module in it, so mypy shouts on it. For now, there is a type: ignore in it.
+import fire  # type: ignore
 from summary_tools.books.books_search import get_all_existing_book_paths
 from summary_tools.chapters import chapters
 from summary_tools.ui import ui
