@@ -31,7 +31,6 @@ def test_generate_new_summary(empty_directory: Path, summary_template_path: Path
     cli_mock = CLI(InputMock([CHOOSE_FIRST_BOOK, SUMMARY_WRITER, CHAPTER_NUMBER, CHAPTER_NAME]), OutputMock())
     generate_new_summary(cli_mock, directory_with_books, summary_template_path)
 
-    expected_summary_path = (directory_with_books / FIRST_BOOK /
-                             f"{CHAPTER_NUMBER}_{pascal_case(CHAPTER_NAME)}__{kebab_case(SUMMARY_WRITER)}")
+    expected_summary_path = directory_with_books / FIRST_BOOK / "0_ChapterName__summary-writer.md"
     assert expected_summary_path.exists()
     assert expected_summary_path.is_file()
