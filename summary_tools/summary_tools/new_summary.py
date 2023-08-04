@@ -27,7 +27,7 @@ def cli_create_new_summary(books_directory: str, summary_template_path: str, deb
     try:
         generate_new_summary(cli, Path(books_directory),
                              Path(summary_template_path))
-    except Exception as e:
+    except BaseException as e:
         if debug:
             raise
         else:
