@@ -17,7 +17,11 @@ class UI(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def show_message(self, message: str):
+    def show_info_message(self, message: str):
+        ...
+
+    @abc.abstractmethod
+    def show_error_message(self, message: str):
         ...
 
     @abc.abstractmethod
