@@ -65,16 +65,19 @@ Pages 18-32:
 1. Each design pattern helps make specific aspects of the code extensible and flexible. To choose a design pattern, start by thinking about how the requirements may change in the future.
 1. Because the nature of inheritance, that in the short term makes things simpler but at the long term if used to much makes things hard to understand and highly coupled, most design patterns use the short term advantages by producing not more than one layer of inheritance, along side with composition.
 1. An added benefit to using design patterns is that one can document code using the names of the design patterns he used and thus making it easy to learn for new comers.
+1. Design patterns should not be applied indiscriminately. Often they achieve flexibility and variability by introducing additional levels of indirection, and that can complicate a design and/or cost you some performance. A design pattern should only be applied when the flexibility it affords is actually needed.
 
 ## Questions
-1. Here you write questions that you asked yourself during the reading.
+1. -
 
 ## Unclear Points
 1. Why is inheritance more straight forward to use then composition? Is it because Composition requires indirection?
 1. When talking about frameworks and design patterns differences, the following line was written: "A graphical editor framework might be used in a factory simulation, but it won't be mistaken for a simulation framework". What does it mean?
 
 ## Research I Did
-1. If you found yourself researching about something, write about it here.
+1. It seems that their are LOTS of design patterns for distributed systems, maybe we should learn about them:
+    - [Martin Fowler - Patterns Of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)
+    - [FreeCodeCamp - Design Patterns For Distributed Systems](https://www.freecodecamp.org/news/design-patterns-for-distributed-systems/)
 
 ## Controversial Points
-1. Here you write any thing that you do not fully agree with.
+1. -
