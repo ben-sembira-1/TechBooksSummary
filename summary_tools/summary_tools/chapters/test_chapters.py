@@ -73,7 +73,7 @@ def test_create_new_chapter_summary_when_exists(empty_directory: Path, summary_t
 
     inputs = (SUMMARY_WRITER, CHAPTER_NUMBER, CHAPTER_NAME) * 2
 
-    cli_mock = CLI(input=InputMock(inputs), output=OutputMock())
+    cli_mock = create_test_cli(input=InputMock(inputs))
 
     (empty_directory / "0_ChapterName__summary-writer.md").touch()
 
@@ -93,7 +93,7 @@ def test_create_new_chapter_summary_relative_path(empty_directory: Path, summary
 
     inputs = (SUMMARY_WRITER, CHAPTER_NUMBER, CHAPTER_NAME) * 2
 
-    cli_mock = CLI(input=InputMock(inputs), output=OutputMock())
+    cli_mock = create_test_cli(input=InputMock(inputs))
 
     create_new_chapter_summary(
         cli_mock, CURRENT_DIRECTORY, summary_template_path)
