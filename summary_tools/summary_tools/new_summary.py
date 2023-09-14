@@ -1,7 +1,4 @@
 from pathlib import Path
-from sys import stdin, stdout
-import sys
-from typing import List
 # TODO: fire does not have a py.typed module in it, so mypy shouts on it. For now, there is a type: ignore in it.
 import fire  # type: ignore
 from summary_tools.books.books_search import get_all_existing_book_paths
@@ -22,17 +19,24 @@ def generate_new_summary(ui_provider: ui.UI, books_directory: Path, summary_temp
         ui_provider, book_path, summary_template_path)
 
 
-def main(books_directory: str, summary_template_path: str, debug: bool = False):
-    cli = CLI(stdin, stdout)
+def cli_create_new_summary(books_directory: str, summary_template_path: str, debug: bool = False):
+    cli = CLI()
     try:
         generate_new_summary(cli, Path(books_directory),
                              Path(summary_template_path))
-    except Exception as e:
+    except BaseException as e:
         if debug:
-            raise
+            import traceback
+            cli.show_error_message(traceback.format_exc())
         else:
-            cli.show_message(f"Error: {str(e)} (use --debug for more details)")
+            cli.show_error_message(
+                f"Error: {str(e)} (use --debug for more details)")
+
+
+def main():
+    fire.Fire(cli_create_new_summary)
 
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    main()
+

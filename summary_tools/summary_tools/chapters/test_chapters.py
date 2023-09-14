@@ -6,9 +6,8 @@ from summary_tools.chapters.chapters import ChapterError, create_new_chapter_sum
 from summary_tools.chapters.chapters_test_tools import summary_template_path
 from summary_tools.filesystem_tools.fs_test_tools import empty_directory
 from summary_tools.string_tools.string_tools import kebab_case, pascal_case
-from summary_tools.ui.cli.cli import CLI
 from summary_tools.ui.cli.cli import CLIError
-from summary_tools.ui.cli.cli_test_tools import InputMock, OutputMock
+from summary_tools.ui.cli.cli_test_tools import InputMock, OutputMock, create_test_cli
 from summary_tools.ui.cli.cli_test_tools import CLIMock
 
 
@@ -32,8 +31,8 @@ def test_get_chapter_summary_metadata():
     ("Writer Name", "0", ""),
 ])
 def test_get_chapter_summary_metadata_empty_input(summary_writer: str, chapter_number: str, chapter_name: str):
-    cli_mock = CLI(
-        InputMock((summary_writer, chapter_number, chapter_name)), OutputMock())
+    cli_mock = create_test_cli(input=InputMock(
+        (summary_writer, chapter_number, chapter_name)))
     with pytest.raises(CLIError):
         get_chapter_summary_metadata(cli_mock)
 

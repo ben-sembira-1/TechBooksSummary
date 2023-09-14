@@ -20,6 +20,9 @@ dependencies = [
     "fire",
 ]
 
+[project.scripts]
+new-tech-book-summary = "summary_tools.new_summary:main"
+
 [project.urls]
 "Homepage" = "https://github.com/ben-sembira-1/TechBooksSummary/tree/feature/summary-tools/summary_tools"
 "Bug Tracker" = "https://github.com/ben-sembira-1/TechBooksSummary/"
