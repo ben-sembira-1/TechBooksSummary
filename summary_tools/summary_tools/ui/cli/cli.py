@@ -1,8 +1,10 @@
 
-from dataclasses import dataclass
+from sys import stdin, stdout, stderr
+from dataclasses import dataclass, field
 from typing import List, Protocol, TypeVar
 
 from summary_tools.ui import ui
+from summary_tools.ui.cli.colors import Color
 
 OptionType = TypeVar("OptionType")
 
@@ -34,8 +36,13 @@ T = TypeVar("T")
 
 @dataclass
 class CLI(ui.UI):
-    input: Input
-    output: Output
+    input: Input = stdin
+    output: Output = stdout
+    error_output: Output = stderr
+
+    def __post_init__(self):
+        if self.error_output is None:
+            self.error_output = self.output
 
     def choose_from(self, options_set_name: str, options: List[ui.Option[T]]) -> T:
         assert len(
@@ -50,12 +57,17 @@ class CLI(ui.UI):
 
         return choose_from_options_no_negative_index(options, int(chosen_option)).value
 
-    def show_message(self, message: str):
+    def show_info_message(self, message: str):
         self._draw_buffer()
         self._print(message)
 
+    def show_error_message(self, message: str):
+        self._draw_buffer()
+        self._print(message, color=Color.FAIL, file=self.error_output)
+
     def get_integer(self, instructions: str | None = None) -> int:
-        input_got = self._detailed_read_input(instructions, hint="number", allow_empty=False)
+        input_got = self._detailed_read_input(
+            instructions, hint="number", allow_empty=False)
         try:
             number = int(input_got)
         except ValueError as e:
@@ -81,12 +93,14 @@ class CLI(ui.UI):
         self._print()
 
         if not allow_empty and not input_got.strip():
-            raise CLIError("Empty input not alowed.")
+            raise CLIError("Empty input not allowed.")
 
         return input_got
 
     def _draw_buffer(self):
         self._print("---------------------------------------")
-    
-    def _print(self, text: str = "", end: str = "\n") -> None:
-        self.output.write(f"{text}{end}")
+
+    def _print(self, text: str = "", end: str = "\n", color: Color = Color.NATIVE, file: Output | None = None) -> None:
+        if file is None:
+            file = self.output
+        file.write(f"{color.value}{text}{end}")

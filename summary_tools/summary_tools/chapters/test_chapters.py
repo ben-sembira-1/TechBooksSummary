@@ -6,9 +6,8 @@ from summary_tools.chapters.chapters import create_new_chapter_summary, get_chap
 from summary_tools.chapters.chapters_test_tools import summary_template_path
 from summary_tools.filesystem_tools.fs_test_tools import empty_directory
 from summary_tools.string_tools.string_tools import kebab_case, pascal_case
-from summary_tools.ui.cli.cli import CLI
 from summary_tools.ui.cli.cli import CLIError
-from summary_tools.ui.cli.cli_test_tools import InputMock, OutputMock
+from summary_tools.ui.cli.cli_test_tools import InputMock, OutputMock, create_test_cli
 from summary_tools.ui.cli.cli_test_tools import CLIMock
 
 
@@ -25,15 +24,18 @@ def test_get_chapter_summary_metadata():
     assert cli_mock.messages_shown == [
         "What is your name?", "What chapter are you reading?", "What is the name of the chapter?"]
 
+
 @pytest.mark.parametrize("summary_writer,chapter_number,chapter_name", [
     ("", "0", "chapter name"),
     ("Writer Name", "", "chapter name"),
     ("Writer Name", "0", ""),
 ])
 def test_get_chapter_summary_metadata_empty_input(summary_writer: str, chapter_number: str, chapter_name: str):
-    cli_mock = CLI(InputMock((summary_writer, chapter_number, chapter_name)), OutputMock())
+    cli_mock = create_test_cli(input=InputMock(
+        (summary_writer, chapter_number, chapter_name)))
     with pytest.raises(CLIError):
         get_chapter_summary_metadata(cli_mock)
+
 
 def test_generate_summary_name():
     CHAPTER_NUMBER = 0
@@ -43,7 +45,9 @@ def test_generate_summary_name():
     cli_mock = CLIMock(options_choices=[], integer_inputs_choices=[
                        CHAPTER_NUMBER], string_input_choices=[SUMMARY_WRITER, CHAPTER_NAME])
 
-    assert generate_summary_name(cli_mock) == f"0_ChapterName__summary-writer.md"
+    assert generate_summary_name(
+        cli_mock) == f"0_ChapterName__summary-writer.md"
+
 
 def test_create_new_chapter_summary(empty_directory: Path, summary_template_path: Path):
     CHAPTER_NUMBER = 0
