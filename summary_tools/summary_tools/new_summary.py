@@ -19,12 +19,12 @@ def generate_new_summary(ui_provider: ui.UI, books_directory: Path, summary_temp
         ui_provider, book_path, summary_template_path)
 
 
-def main(books_directory: str, summary_template_path: str, debug: bool = False):
+def cli_create_new_summary(books_directory: str, summary_template_path: str, debug: bool = False):
     cli = CLI()
     try:
         generate_new_summary(cli, Path(books_directory),
                              Path(summary_template_path))
-    except Exception as e:
+    except BaseException as e:
         if debug:
             import traceback
             cli.show_error_message(traceback.format_exc())
@@ -33,5 +33,10 @@ def main(books_directory: str, summary_template_path: str, debug: bool = False):
                 f"Error: {str(e)} (use --debug for more details)")
 
 
+def main():
+    fire.Fire(cli_create_new_summary)
+
+
 if __name__ == "__main__":
-    fire.Fire(main)
+    main()
+
