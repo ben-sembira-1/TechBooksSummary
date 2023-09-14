@@ -1,6 +1,12 @@
 {
     "cSpell.words": [
         "instanceof",
-        "Sembira"
-    ]
+        "Sembira",
+        "subfile",
+        "subfiles"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none"
 }
