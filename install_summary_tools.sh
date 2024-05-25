@@ -2,6 +2,7 @@
 
 echo "Installing python"
 sudo apt install python3 --upgrade
+pip install --upgrade pip
 
 echo "Installing summary tools"
 python3 -m pip install --ignore-installed -e ./summary_tools
