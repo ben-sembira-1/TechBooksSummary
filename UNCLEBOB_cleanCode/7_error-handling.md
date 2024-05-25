@@ -1,5 +1,5 @@
 # Chapter 7 - Error Handling
-**Name, put your summary here**
+**Ben Sembira**
 
 ## Random Points
 1. I really like the wrapper thing style! I think it is a great idea to wrap 3rd party functions to not mess with ugly interfaces in the main logic.

@@ -1,5 +1,5 @@
 # Chapter 4 - Comments
-**Ben, put your summary here**
+**Ben Sembira**
 
 ## Random Points
 1. Comments May be good, may create a mess, and may be lying and creating bugs.

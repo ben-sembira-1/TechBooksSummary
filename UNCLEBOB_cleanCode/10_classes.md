@@ -1,4 +1,5 @@
 # Chapter 10 - Classes
+**Ben Sembira**
 
 ## New Terms
 1. _Cohesion_ - The more instance variables a function uses, the more cohesive it is. A class that all its methods use all its instance variables is said to be maximally cohesive.
